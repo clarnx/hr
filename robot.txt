@@ -1,0 +1,22 @@
+User-agent: *
+Disallow: /
+
+User-agent: Googlebot
+Disallow:
+
+User-agent: Googlebot-image
+Disallow:
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: AdIdxBot
+Allow: /
+
+User-agent: AhrefsSiteAudit
+Allow: /
+
+
+#allow all bot to access the site
+User-agent: *
+Sitemap: https://www.haroth.com/sitemap_index.xml 

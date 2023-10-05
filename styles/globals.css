@@ -1,0 +1,356 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background-color: #fafafa;
+}
+
+html, body {
+  overflow-x: hidden!important;
+}
+
+
+body {
+  overflow: hidden;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+
+.categoryTitle {
+  position: relative;
+  flex: 1;
+}
+.categoryTitleBefore {
+  flex: 3;
+  height: 1px;
+  background-color: rgba(87, 87, 87, 0.456);
+  justify-self: center;
+  top: 50%;
+  left: 0;
+  width: 100%;
+}
+
+.categoryTitleAfter {
+  flex: 3;
+  height: 1px;
+  background-color: rgba(87, 87, 87, 0.456);
+  justify-self: center;
+  top: 50%;
+  right: 0;
+  width: 100%;
+}
+
+
+
+.sidebar-category {
+  position: relative;
+}
+.sidebar-category::after {
+  position: absolute;
+  content: "";
+  background-color: #ff6536;
+  height: 4px;
+  width: calc(50%);
+  bottom: 0;
+  left: 0;
+  transition: all 0.2s;
+}
+
+.category-open::after {
+  left:calc(50%);
+}
+
+.neumorphic-card {
+  filter: 
+  drop-shadow(-0.5px -0.5px 1px white)
+  drop-shadow(2px 2px 1px rgb(30, 30, 30));
+}
+
+.wishlist {
+  filter: 
+  drop-shadow(-0.5px -0.5px 1px white)
+  drop-shadow(2px 2px 1px black);
+  transition: transform 100ms;
+}
+
+.wishlist:hover {
+  transform: scale(1.1);
+}
+
+.userModal  {
+  background-color: white;
+  box-shadow:2px 2px 1px black, -1px -1px 5px rgba(0, 0, 0, 0.571);
+}
+
+.neumorphism {
+  box-shadow: 2px 2px 1px black, -2px -2px 5px white;
+}
+
+.products-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Scrollbar Styling */
+
+/* Firefox */
+.color-filter::-webkit-scrollbar {
+  width: 6px;
+  width: 6px;
+}
+.color-filter::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background-color: #DFE9EB;
+}
+
+.color-filter::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+.color-filter::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+.color-filter::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: #BDB7B7;
+}
+
+.color-filter::-webkit-scrollbar-thumb:hover {
+  background-color: #979797;
+}
+
+.color-filter::-webkit-scrollbar-thumb:active {
+  background-color: #979797;
+}
+
+/* PRODUCT DETAILS CAROUSEL STYLING CUSTOMIZATION START */
+
+.productCarousel.carousel-root {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 15px;
+}
+.productCarousel.carousel-root .carousel {
+  width: auto;
+}
+.productCarousel.carousel-root .carousel.carousel-slider {
+  width: 100%;
+}
+.productCarousel.carousel-root .carousel.carousel-slider .slider-wrapper {
+  border-radius: 10px;
+}
+.productCarousel.carousel-root .carousel .thumbs-wrapper {
+  margin: 0;
+  max-height: 732px;
+  overflow-y: auto;
+}
+
+.thumbs {
+  max-height: 100%;
+}
+
+.productCarousel.carousel-root .carousel .thumbs-wrapper::-webkit-scrollbar {
+  display:none !important;
+}
+
+.productCarousel.carousel-root .carousel .thumb {
+  height: 100px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.productCarousel.carousel-root .carousel .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.productCarousel.carousel-root .carousel .thumb:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0;
+}
+.productCarousel.carousel-root .carousel .thumb.selected,
+.productCarousel.carousel-root .carousel .thumb:hover {
+  border: 0;
+}
+.productCarousel.carousel-root .carousel .thumb:hover:after,
+.productCarousel.carousel-root .carousel .thumb.selected:after {
+  opacity: 0.2;
+}
+.productCarousel .control-arrow {
+  display: none;
+}
+@media screen and (max-width: 919px) {
+  .productCarousel.carousel-root {
+      flex-direction: column;
+  }
+  .productCarousel.carousel-root .carousel .thumb {
+      border: 0;
+      padding: 0;
+  }
+}
+@media screen and (min-width: 920px) {
+  .productCarousel.carousel-root .carousel .thumbs {
+      transform: none !important;
+      flex-direction: column;
+      display: flex;
+      gap: 10px;
+  }
+  .productCarousel.carousel-root .carousel .thumb {
+      border: 0;
+      padding: 0;
+      margin: 0;
+  }
+}
+/* PRODUCT DETAILS CAROUSEL STYLING CUSTOMIZATION END */
+
+.markdown ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: disc;
+  margin: 20px 0;
+}
+.markdown ul li {
+  margin: 10px 0;
+}
+
+
+
+
+@media screen and(max-width: 960px) {
+  
+
+  
+  .ribbon{
+    line-height: 1em;
+    padding: 0.5em;
+  }
+  
+  .ribbon:before, .ribbon:after{
+    font-size: 0.714em;
+  }
+  
+}
+
+@media screen and (max-width: 400px) {
+  
+  .ribbon{
+    line-height: 12px;
+    padding: 0.5em;
+  }
+  
+  .ribbon:before, .ribbon:after{
+    font-size: 12px;
+  }
+  
+}
+
+
+
+
+/* STAR RATING INPUT START */
+.rating {
+  display: inline-block;
+  position: relative;
+  height: fit-content;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: #facc15;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px #facc15;
+}
+
+@media screen and (max-width: 768px) {
+  .rating {
+  
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+/* STAR RATING INPUT END */

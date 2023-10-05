@@ -1,0 +1,233 @@
+
+export const colors = [
+  {
+    name: "Ash Grey",
+    colorCode: "#82858a",
+  },
+  {
+    name: "Beige",
+    colorCode: "#e9d5be",
+  },
+  {
+    name: "Black",
+    colorCode: "#000000",
+  },
+  {
+    name: "Blue",
+    colorCode: "#0808fe",
+  },
+  {
+    name: "Brown",
+    colorCode: "#995108",
+  },
+  {
+    name: "Charcoal",
+    colorCode: "#3c4b55",
+  },
+  {
+    name: "Charcoal Grey",
+    colorCode: "#5e5f64",
+  },
+  {
+    name: "Chocolate",
+    colorCode: "#44281a",
+  },
+  {
+    name: "Copper",
+    colorCode: "#ba7739",
+  },
+  {
+    name: "Gold",
+    colorCode: "#ffd808",
+  },
+  {
+    name: "Green",
+    colorCode: "#34ac32",
+  },
+  {
+    name: "Grey",
+    colorCode: "#acacac",
+  },
+  {
+    name: "Honey Oak",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Honey Oak Finish",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Maroon",
+    colorCode: "#840808",
+  },
+  {
+    name: "Mulbery",
+    colorCode: "#7b0f3d",
+  },
+  {
+    name: "Multicolor",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Multicolour",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Navy Blue",
+    colorCode: "#123659",
+  },
+  {
+    name: "Oak Finish",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Ochre",
+    colorCode: "#ce7b29",
+  },
+  {
+    name: "Olive",
+    colorCode: "#848408",
+  },
+  {
+    name: "Orange",
+    colorCode: "#ff8420",
+  },
+  {
+    name: "Pink",
+    colorCode: "#ff4177",
+  },
+  {
+    name: "Provincial Teak",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Provincial Teak Finish",
+    colorImage: "https://nextjspics.s3.ap-south-1.amazonaws.com/honeoak_53806152b4.jpg",
+  },
+  {
+    name: "Purple",
+    colorCode: "#a327f0",
+  },
+  {
+    name: "Red",
+    colorCode: "#f00e18",
+  },
+];
+
+const sidebarItems = [
+  {
+    name: "Home",
+    href: "/",
+    onClick: null,
+    subItems: null,
+  },
+  {
+    name: "Furniture",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+  {
+    name: "",
+    href: "",
+    onClick: "",
+    subItems: "",
+  },
+];
+
+// "Teak Finish",
+// "Teal",
+// "Teal Blue",
+// "Walnut",
+// "Walnut Bronze",
+// "Walnut Finish",
+// "Warm Chestnut",
+// "Wenge",
+// "Wenge Finish",
+// "white, Wine",
+// "Yellow",
+// "Acacia Finish",
+// "Antique Multicolour",
+// "Ash Finish",
+// "Beach Finish",
+// "Beige Finish",
+// "Black Finish",
+// "Blue Colour",
+// "Brown Colour",
+// "Brown finish",
+// "Cappuccino Finish",
+// "Charcoal Finish",
+// "Cherry Finish",
+// "Chestnut Dark Finish",
+// "Chestnut Finish",
+// "Dark Brown",
+// "Dark elm Finish",
+// "Dark Maple Finish",
+// "Dark Oak",
+// "Ebony Finish",
+// "Exotic Teak Finish",
+// "Glossy Teak Finish",
+// "Green Finish",
+// "Grey Finish",
+// "Honey Oak Finish",
+// "Honey Finish",
+// "Knottywood Finish",
+// "Matt Finish",
+// "Mist White Finish",
+// "Oak Melamine Finish",
+// "Ocean Blue",
+// "Pink Finish",
+// "Rainwood Finish",
+// "Red Oak Colour",
+// "Rosewood Finish",
+// "Rustic Teak Finish",
+// "Rustik Teak",
+// "Tone Finish",
+// "Vermont Finish",
+// "Vintage",
+// "Warm Finish",
+// "White Finish",
+// "Wood Finish",
+// "Yellow Finish",

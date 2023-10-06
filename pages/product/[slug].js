@@ -291,6 +291,7 @@ const ProductPage = ({ product, relatedProducts, giftCoupon }) => {
                 size={p.size}
                 armType={p?.armType}
                 weight={p?.weight}
+                SKU_ID={p?.SKU_ID}
                 productId={product?.data?.[0]?.id}
               />
             </div>

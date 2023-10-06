@@ -15,6 +15,8 @@ import { addCouponDiscount, addGiftDiscount, updateFastDelivery } from "../store
 import CouponCode from "../components/CouponCode";
 import CheckoutFooter from "../components/CheckoutFooter";
 import Head from "next/head";
+
+
 const Cart = ({ notSignedIn }) => {
   const [loading, setLoading] = useState(false);
   // Checking if user is authenticated start

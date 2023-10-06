@@ -14,6 +14,7 @@ import { AiFillShop } from "react-icons/ai"
 import { useSession } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
 import { onOpen as openLoginModal } from "../store/loginModalSlice";
+import { fetchDataFromApi } from "../libs/api";
 
 // import { motion } from "framer-motion";
 const Header = ({
@@ -28,13 +29,13 @@ const Header = ({
   const [show, setShow] = useState(isOpen ? "translate-y-[30px]" : 'translate-y-0')
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState(null); // Replace with your user state logic
-
+  
+ 
 
 
 
   const { data: session } = useSession();
-
+  const [userData, setUserData] = useState(null); // Replace with your user state logic
   const router = useRouter();
 
   const checkIsMobile = () => {
@@ -44,6 +45,19 @@ const Header = ({
       setIsMobile(false);
     }
   }
+
+  useEffect(() => {
+
+    if(session?.id){
+
+      
+      fetchDataFromApi(
+        `api/users/${session?.id}?populate=*`
+        ).then((res) => {
+          setUserData(res);
+        });
+      }
+  }, [session?.id]);
 
   useEffect(() => {
 
@@ -151,13 +165,20 @@ const Header = ({
           <div className="flex items-center gap-0">
             
             <div>
-              {user ? (
+              {userData? (
                 // If user is logged in, show user name
-                <span className="text-black">Hello, {userData.username}</span>
+                <div className="flex gap-0 items-center">
+                <span className="flex flex-col text-xs text-right text-[#ff6536]">
+                <span className="text-black text-sm">Hi, {userData?.username}</span>
+                <span className="text-xs text-[#ff6536]">Welcome to Haroth Family</span>
+                
+                </span>
+                <RoundButton isUser={true} icon={AiOutlineUser} />
+                </div>
               ) : (
                 // If user is not logged in, show the "Register Now" button
-                <div className="flex gap-0 items-center cursor-pointer">
-                  <span className="flex flex-col text-xs text-right text-[#ff6536] font-sans">
+                <div className="flex gap-0 items-center">
+                  <span className="flex flex-col text-xs text-right text-[#ff6536]">
                     <span className=" text-black">Register Now</span>
                     <span>Get Extra 25% OFF</span>
                   </span>

@@ -13,7 +13,7 @@ const OfferPopup = () => {
     if (router.pathname !== '/cart' && router.pathname !== '/checkout') {
       let timeout = setTimeout(() => {
         setShowPopup(true);
-      }, 3000);
+      }, 5000);
 
       return () => {
         clearTimeout(timeout);

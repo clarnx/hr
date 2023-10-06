@@ -109,8 +109,8 @@ export const useLocalStorage = () => {
   useEffect(() => {
     const cartItems = localStorage.getItem("cartItems");
     let jsonCartItems = JSON.parse(cartItems);
-    // console.log("JSON items", jsonCartItems)
-    // console.log("CART ITEMS", JSON.parse(JSON.stringify(cartItems)))
+    console.log("JSON items", jsonCartItems)
+    console.log("CART ITEMS", JSON.parse(JSON.stringify(cartItems)))
     let modifiedCartItems = JSON.parse(JSON.stringify(cartItems));
     return jsonCartItems;
   })
@@ -126,7 +126,7 @@ export const clearUnusedLocalStorage = () => {
       const existingData = JSON.parse(localStorage.getItem(storageKey)) || [];
 
       // Define a threshold for how long an item can be considered unused
-      const unusedThresholdInMilliseconds = 2 * 24 * 60 * 60 * 1000; // 2 days
+      const unusedThresholdInMilliseconds = 1 * 24 * 60 * 60 * 1000; // 1 days
 
       // Filter out items that have been used recently (within the threshold)
       const itemsToKeep = existingData.filter((item) => {
@@ -164,13 +164,42 @@ export const storeStateToLocal = (cartItems) => {
   }
 };
 
+// export const loadStateFromLocalStorage = async (userData) => {
+//   if (typeof window !== "undefined") {
+//     if (userData && userData.isRegistered) {
+//       try {
+//         // Fetch cart items from the Strapi API for registered users
+//         const response = await axios.get("https://tak.haroth.com/api/users/${userId}?populate=cartItems"); // Replace with your Strapi API endpoint
+
+//         if (response.data && response.data.cartItems) {
+//           return response.data.cartItems;
+//         }
+//       } catch (error) {
+//         console.error("Error fetching cart items from Strapi:", error);
+//       }
+//     } else {
+//       // For guest users, fetch cart items from local storage
+//       const cartItems = localStorage.getItem("cartItems");
+//       const jsonCartItems = JSON.parse(cartItems);
+
+//       let modifiedCartItems = JSON.parse(JSON.stringify(cartItems));
+
+//       return jsonCartItems || [];
+//     }
+//   }
+
+//   return [];
+// };
+
+
+
 
 export const loadStateFromLocalStorage = () => {
   if (typeof window !== "undefined") {
     const cartItems = localStorage.getItem("cartItems");
     let jsonCartItems = JSON.parse(cartItems);
-    // console.log("JSON items", jsonCartItems)
-    // console.log("CART ITEMS", JSON.parse(JSON.stringify(cartItems)))
+    console.log("JSON items", jsonCartItems)
+    console.log("CART ITEMS", JSON.parse(JSON.stringify(cartItems)))
     let modifiedCartItems = JSON.parse(JSON.stringify(cartItems));
     return jsonCartItems;
   }

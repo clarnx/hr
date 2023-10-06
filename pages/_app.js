@@ -18,6 +18,7 @@ import OfferPopup from "../components/OfferPopup";
 import Salesiq from "./salesiq";
 import VisitfactoryForm from "../components/VisitFactoryForm";
 import { Analytics } from '@vercel/analytics/react';
+import BotsonicWidget from "./BotsonicWidget";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -54,6 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <OfferPopup /> 
           
         </Provider>
+        <BotsonicWidget />
         <Salesiq widgetCode={`siqb3d4f0089a7adff1de220b6da34ba3f7fec23a78f8033952b387cfe070dd67106a07d4fb5adcfc010f50c0aaa101ce39`}
           domain={`https://salesiq.zoho.in/widget`}
         />

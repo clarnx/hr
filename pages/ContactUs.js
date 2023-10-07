@@ -73,7 +73,7 @@ const ContactUs = () => {
   return (
     <Container>
       <Head>
-        <title>Policies - Haroth.com</title>
+        <title>Contact Us - Haroth.com</title>
         <meta name="description" content="Haroth.com is the one-stop website for all your furniture needs" />
       </Head>
       <section className="lg:px-32 md:px-16 px-6 grid grid-cols-1 md:grid-cols-4 mt-8 pt-16 lg:pt-24"/>
@@ -86,7 +86,7 @@ const ContactUs = () => {
             Contact us
           </h1>
           <p className="mt-1 text-gray-700 dark:text-gray-400">
-            We'd love to talk about how we can help you.
+            We would love to talk about how we can help you.
           </p>
         </div>
     
@@ -158,7 +158,7 @@ const ContactUs = () => {
     
               <div className="mt-3 text-center">
                 <p className="text-sm text-gray-500">
-                  We'll get back to you in 1-2 business days.
+                  We will get back to you in 1-2 business days.
                 </p>
               </div>
             </form>
@@ -174,7 +174,7 @@ const ContactUs = () => {
               </svg>
               <div>
                 <h3 className="font-semibold text-gray-800">Knowledgebase</h3>
-                <p className="mt-1 text-sm text-gray-500">We're here to help with any questions or code.</p>
+                <p className="mt-1 text-sm text-gray-500">We are here to help with any questions or code.</p>
                 <a className="mt-2 inline-flex items-center gap-x-2 text-sm font-medium text-gray-600 hover:text-red-600" href="#" 
                 onClick={openBotsonicWidget} >
                   Contact support

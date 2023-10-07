@@ -297,6 +297,59 @@ export default async function handler(req, res) {
     }
 
 
+    if (type == "contactus") {
+      // FOR CALLBACK
+      const info = await transporter.sendMail({
+        from: '"New Lead 🚀" cs@haroth.com', // sender address
+        to: "lead@haroth.com", // list of receivers
+        subject: `${data.name}`, // Subject line
+        text: "Hello world?", // plain text body
+        html: `
+            <p>
+              <strong>name: </strong> ${data.name}
+              </p>
+              <br />
+    
+              <p>
+              <strong>lastname:</strong> ${data.phone}
+              </p>
+              <br/>
+              <p>
+              <strong>email: </strong> ${data.email}
+              </p>
+              <br />
+    
+              <p>
+              <strong>phone no.: </strong> ${data.city}
+              </p>
+              <br />
+              <p>
+              <strong>Massage: </strong> ${data.msg}
+              </p>
+            `, // html body
+      });
+
+      const responseInfo = await transporter.sendMail({
+        from: '"Haroth.com" lead@haroth.com', // sender address
+        to: data?.email, // list of receivers
+        subject: `Reply - Haroth`, // Subject line
+        text: "Hello world?", // plain text body
+        html: `
+         Hey ${data.name}!
+
+         We've successfully received your message.
+         <br />
+
+         Sit back & Relax.<br />
+
+         Our team will call you to get in touch
+          `, // html body
+      });
+
+
+    }
+
+
 
 
 

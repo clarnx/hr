@@ -28,7 +28,7 @@ const ContactForm = () => {
     try {
       setisLoading(true);
       setErrorMsg("");
-      console.log("DATA", data)
+      // console.log("DATA", data)
 
       const res = await axios.post("/api/contact", { data, type: "callback" });
 
@@ -77,7 +77,7 @@ const ContactForm = () => {
             </span>
           )}
           <form
-            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-4"
             onSubmit={handleSubmit(onSubmit)}
           >
             <BulkFormInput
@@ -120,13 +120,13 @@ const ContactForm = () => {
 
             />
 
-            <textarea defaultValue="Share Your Concern" {...register("msg")} id="msg" className="col-span-full min-h-[70px] sm:min-h-[100px] border-[1px] border-gray-300 p-2 w-full placeholder:text-gray-300 rounded-lg">
+            <textarea placeholder="Share Your Concern" rows={4} {...register("msg")} id="msg" className="col-span-full min-h-[70px] sm:min-h-[100px] border-[1px] border-gray-300 p-2 w-full placeholder:text-gray-300 rounded-lg">
 
             </textarea>
 
 
             <input
-              className="w-1/2 bg-[#ff6536] text-white rounded-lg px-4 py-2 md:py-4 border-2 border-black hover:bg-white hover:text-[#ff6536] transition duration-200 cursor-pointer sm:col-span-2 place-self-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-1/2 bg-blue-600 text-white rounded-lg px-4 py-2 md:py-3 border-2 hover:bg-blue-900 hover:text-white transition duration-200 cursor-pointer sm:col-span-2 place-self-center disabled:opacity-50 disabled:cursor-not-allowed"
               type="submit"
               value="Submit"
               disabled={isLoading}

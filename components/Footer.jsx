@@ -7,6 +7,7 @@ import  {FaMobileAlt} from "react-icons/fa"
 import appStore from "../public/available-app-store.png"
 import googlePlay from "../public/google-play.png"
 import Link from "next/link";
+import ContactUs from "../pages/contactUs";
 const Footer = () => {
 
 
@@ -84,10 +85,14 @@ const Footer = () => {
           Terms & Conditions
         </li>
         <li className="flex justify-center items-center gap-2 hover:text-black transition-all duration-200 cursor-pointer">
+          <Link href={"/ContactUs"}>
           Contact Us
+          </Link>
         </li>
         <li className="flex justify-center items-center gap-2 hover:text-black transition-all duration-200 cursor-pointer">
+          <Link href={"https://blog.haroth.com"} target="_blank">
           Latest News
+          </Link>
         </li>
       </ul>
 

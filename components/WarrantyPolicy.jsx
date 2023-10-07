@@ -2,7 +2,7 @@ import React from "react";
 import { BsShieldCheck, BsShieldX } from "react-icons/bs";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 
-const WarrantPolicy = () => {
+const WarrantyPolicy = () => {
   return (
     <>
       <h3 className="text-2xl text-black">Warranty Policy</h3>
@@ -59,4 +59,4 @@ const WarrantPolicy = () => {
   );
 };
 
-export default WarrantPolicy;
+export default WarrantyPolicy;

@@ -2,7 +2,7 @@ const fs = require('fs');
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { createGzip } = require('zlib');
 
-const pages = ['/', '/product', '/contactUs', /* Add your pages here */];
+const pages = ['/', '/contactus', /* Add your pages here */];
 
 async function generateSitemap() {
   const smStream = new SitemapStream({

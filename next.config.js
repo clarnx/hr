@@ -10,15 +10,16 @@ const nextConfig = {
   },
 }
 
-const withSitemap = require('next-sitemap');
+// const withSitemap = require('next-sitemap');
 
-module.exports = withSitemap({
-  sitemap: {
-    path: '/sitemap.xml',
-    exclude: [],
-  },
-  // Other Next.js configurations...
-});
+// module.exports = withSitemap({
+//   sitemap: {
+//     path: '/sitemap.xml',
+//     exclude: [],
+//   },
+//   // Other Next.js configurations...
+// });
+
 
 
 module.exports = nextConfig

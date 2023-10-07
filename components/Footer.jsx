@@ -7,7 +7,7 @@ import  {FaMobileAlt} from "react-icons/fa"
 import appStore from "../public/available-app-store.png"
 import googlePlay from "../public/google-play.png"
 import Link from "next/link";
-import ContactUs from "../pages/contactUs";
+import ContactUs from "../pages/ContactUs";
 const Footer = () => {
 
 

@@ -19,6 +19,11 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@corex/deepmerge@^4.0.43":
+  version "4.0.43"
+  resolved "https://registry.npmjs.org/@corex/deepmerge/-/deepmerge-4.0.43.tgz"
+  integrity sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==
+
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz"
@@ -119,7 +124,7 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@next/env@13.4.7":
+"@next/env@^13.4.3", "@next/env@13.4.7":
   version "13.4.7"
   resolved "https://registry.npmjs.org/@next/env/-/env-13.4.7.tgz"
   integrity sha512-ZlbiFulnwiFsW9UV1ku1OvX/oyIPLtMk9p/nnvDSwI0s7vSoZdRtxXNsaO+ZXrLv/pMbXVGq4lL8TbY9iuGmVw==
@@ -2088,7 +2093,7 @@ minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@^1.2.0, minimist@^1.2.3, minimist@^1.2.6:
+minimist@^1.2.0, minimist@^1.2.3, minimist@^1.2.6, minimist@^1.2.8:
   version "1.2.8"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.8.tgz"
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
@@ -2152,7 +2157,17 @@ next-auth@^4.22.1:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-"next@^12.2.5 || ^13", "next@>= 6.0.0", next@13.4.7:
+next-sitemap@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.npmjs.org/next-sitemap/-/next-sitemap-4.2.3.tgz"
+  integrity sha512-vjdCxeDuWDzldhCnyFCQipw5bfpl4HmZA7uoo3GAaYGjGgfL4Cxb1CiztPuWGmS+auYs7/8OekRS8C2cjdAsjQ==
+  dependencies:
+    "@corex/deepmerge" "^4.0.43"
+    "@next/env" "^13.4.3"
+    fast-glob "^3.2.12"
+    minimist "^1.2.8"
+
+next@*, "next@^12.2.5 || ^13", "next@>= 6.0.0", next@13.4.7:
   version "13.4.7"
   resolved "https://registry.npmjs.org/next/-/next-13.4.7.tgz"
   integrity sha512-M8z3k9VmG51SRT6v5uDKdJXcAqLzP3C+vaKfLIAM0Mhx1um1G7MDnO63+m52qPdZfrTFzMZNzfsgvm3ghuVHIQ==

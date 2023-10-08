@@ -142,7 +142,7 @@ const LoginModal = () => {
             y: 0,
           }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-5/6 md:w-2/3 lg:w-[30%] max-h-max bg-white z-40 flex flex-col gap-4 items-center md:px-8 px-8 py-6 md:py-8 rounded-lg"
+          className="relative w-5/6 md:w-2/3 lg:w-[26%] max-h-max bg-white z-40 flex flex-col gap-4 items-center md:px-8 px-8 py-6 md:py-8 rounded-lg"
         >
           <Image
             src="https://nextjspics.s3.ap-south-1.amazonaws.com/office_homepage_1_copy_f2c46d5bb9.webp"

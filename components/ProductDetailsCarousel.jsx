@@ -56,7 +56,7 @@ const ProductDetailsCarousel = ({ images, id, isNew }) => {
       <WishlistButton isLarge={true} productId={id} />
       {
         isNew && (
-          <div className="absolute  px-2 bg-sky-400 text-white top-0 left-6 lg:left-[140px]">
+          <div className="absolute  px-2 bg-sky-400 text-white top-0 left-6 lg:left-[125px]">
 
 
             <span className="text-xs sm:text-sm md:text-lg lg:text-xl py-0">New</span>

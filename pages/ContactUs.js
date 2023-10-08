@@ -1,15 +1,13 @@
 import React from 'react';
-import Container from '../components/Container';
 import Head from 'next/head';
-import Breadcrumb from '../components/Breadcrumb';
 import { useDispatch } from 'react-redux';
 import { onOpen as openContactForm } from "../store/contactFormSlice";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import {BulkFormInput} from "../components/BulkPurchaseForm"
 import Link from 'next/link';
-
+import Container from '../components/Container';
+import { BulkFormInput } from '../components/BulkPurchaseForm';
 
 
 
@@ -126,8 +124,8 @@ const ContactUs = () => {
                   <BulkFormInput
                       register={register}
                       errors={errors.email}
-                      label="Email (optional)"
-                      type="email"
+                      label="Enter Your Email"
+                      type={"text"}
                       id="email"
                       // disabled={isLoading}
                     />        

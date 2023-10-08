@@ -21,7 +21,7 @@ const PincodeChecker = ({ brandPincode }) => {
     
         if (maxDays && minDays) {
           let maxDate = new Date(
-            new Date().getTime() + maxDays * 24 * 60 * 60 * 1000
+            new Date().getTime() + maxDays * 10 * 60 * 60 * 1000
           ).toDateString();
           let minDate = new Date(
             new Date().getTime() + minDays * 24 * 60 * 60 * 1000

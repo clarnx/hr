@@ -3,7 +3,10 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+          {/* Include the OneSignal SDK script */}
+          <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        </Head>
       <body>
         <Main />
         <NextScript />

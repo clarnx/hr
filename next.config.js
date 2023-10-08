@@ -20,6 +20,17 @@ const nextConfig = {
 //   // Other Next.js configurations...
 // });
 
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.externals = {
+        onesignal: 'OneSignal',
+      };
+    }
+
+    return config;
+  },
+};
 
 
 module.exports = nextConfig

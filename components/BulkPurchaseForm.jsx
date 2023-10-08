@@ -228,7 +228,7 @@ const BulkPurchaseForm = () => {
             </span>
           )}
           <form
-            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6 md:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-3 md:gap-4"
             onSubmit={handleSubmit(onSubmit)}
           >
             <BulkFormInput

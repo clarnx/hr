@@ -19,6 +19,8 @@ import Salesiq from "./salesiq";
 import VisitfactoryForm from "../components/VisitFactoryForm";
 import { Analytics } from '@vercel/analytics/react';
 import BotsonicWidget from "./BotsonicWidget";
+import OneSignalInit from "./OneSignalInit";
+
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -36,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5N8GHVR');
       `}
       </Script>
-     
+
       <SessionProvider session={session}>
         <Provider store={store}>
           {/* <HeaderOffer /> */}
@@ -53,6 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <ContactForm />
           <Toaster />
           <OfferPopup /> 
+          <OneSignalInit />
           
         </Provider>
         <BotsonicWidget />

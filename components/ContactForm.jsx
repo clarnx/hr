@@ -68,7 +68,7 @@ const ContactForm = () => {
           onClick={(e) => e.stopPropagation()}
           className="relative w-5/6 md:w-2/3 lg:w-1/2 max-h-max bg-white z-40 flex flex-col gap-4 sm:gap-8 items-center md:px-16 px-8 md:py-8 py-6 rounded-lg"
         >
-          <span className="text-lg md:text-xl lg:text-3xl text-black text-center">Request a Callback
+          <span className="text-lg md:text-xl lg:text-3xl font-sans text-black text-center">Request a Callback
             <span className="text-gray-400 text-sm block w-full">Fill in the details and we will get back to you shortly.</span>
           </span>
           {errorMsg && (
@@ -77,7 +77,7 @@ const ContactForm = () => {
             </span>
           )}
           <form
-            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 w-full gap-3 md:gap-4"
             onSubmit={handleSubmit(onSubmit)}
           >
             <BulkFormInput

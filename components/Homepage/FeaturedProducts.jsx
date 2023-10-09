@@ -16,16 +16,28 @@ const FeaturedProducts = () => {
   const [coupon, setCoupon] = useState(null)
 
   useEffect(() => {
-    const data = fetchDataFromApi(`api/coupons?filters[code]=NEW25&populate=deep`).then(res => {
-
-
-      if (res.data.length > 0) {
-        setProducts(res.data[0].attributes.products.data);
-        setCoupon(res.data[0]);
+    const fetchCouponTimer = async () => {
+      try {
+        // Fetch the coupon timer data
+        const response = await fetchDataFromApi(
+          "api/coupons?filters[code]=NEW25&populate=deep"
+        );
+        if (response.data.length > 0) {
+          const couponData = response.data[0];
+          // Sort the products by updatedAt in descending order and slice the first 5
+          const latest5Products = couponData.attributes.products.data
+            .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+            .slice(0, 5);
+          setProducts(latest5Products);
+          setCoupon(couponData);
+        }
+      } catch (error) {
+        console.error("Error fetching coupon timer data:", error);
       }
-    });
+    };
 
-  }, [])
+    fetchCouponTimer();
+  }, []);
 
   const responsive = {
     superLargeDesktop: {

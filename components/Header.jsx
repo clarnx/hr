@@ -170,7 +170,7 @@ const Header = ({
                 <div className="flex gap-0 items-center">
                 <span className="flex flex-col text-xs text-right text-[#ff6536]">
                 <span className="text-black text-sm">Hi, {userData?.username}</span>
-                <span className="text-xs text-[#ff6536]">Welcome to Haroth Family</span>
+                <span className="text-xs text-[#ff6536]">Welcome Back 🙏</span>
                 
                 </span>
                 <RoundButton isUser={true} icon={AiOutlineUser} />

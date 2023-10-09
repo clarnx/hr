@@ -174,7 +174,7 @@ const ProductDetails = ({
     <div className="flex w-full flex-col gap-0 transition-all duration-200">
       {/* SPECIFICATION START */}
       <>
-        <div onClick={() => setShowSpecifications((prev) => !prev)} className="flex justify-between items-center border-t-2 border-gray-200 bg-white font-semibold py-4 px-4 transition-all duration-200">
+        <div onClick={() => setShowSpecifications((prev) => !prev)} className="flex justify-between items-center border-t-2 border-gray-200 bg-white font-semibold py-4 transition-all duration-200">
           Product Details{" "}
           <BsChevronDown
             onClick={() => setShowSpecifications((prev) => !prev)}
@@ -184,7 +184,7 @@ const ProductDetails = ({
         </div>
         <div
           className={`${showSpecifications ? "scale-y-100 h-full" : "scale-y-0 h-0"
-            } overflow-hidden w-full px-4 transition-all duration-200 grid grid-cols-2 gap-y-3 border-gray-200`}
+            } overflow-hidden w-full transition-all duration-200 grid grid-cols-2 gap-y-3 mb-4 border-gray-200`}
         >
           <p className=" flex flex-col"><span className="font-bold">Brand: </span>{brand}</p>
           <p className=" flex flex-col"><span className="font-bold">Warranty: </span>{warranty} Months</p>
@@ -201,7 +201,7 @@ const ProductDetails = ({
 
       {/* DESCRIPTION START */}
       <div>
-        <div onClick={() => setShowDescription((prev) => !prev)} className="flex justify-between items-center border-t-2 border-gray-200 bg-white font-semibold py-4 px-4">
+        <div onClick={() => setShowDescription((prev) => !prev)} className="flex justify-between items-center border-t-2 border-gray-200 bg-white font-semibold py-4">
           Description{" "}
           <BsChevronDown
             onClick={() => setShowDescription((prev) => !prev)}
@@ -211,7 +211,7 @@ const ProductDetails = ({
         </div>
         <p
           className={`${showDescription ? "scale-y-100 h-full" : "scale-y-0 h-0"
-            } overflow-hidden w-full px-4 transition-all duration-200 border-gray-200`}
+            } overflow-hidden w-full transition-all duration-200 border-gray-200`}
         >
           {description}
         </p>
@@ -221,7 +221,7 @@ const ProductDetails = ({
       {/* ABOUT THE BRAND START */}
 
       <div>
-        <div onClick={() => setShowBrand((prev) => !prev)} className="flex justify-between items-center border-t-2 border-gray-200 bg-white font-semibold py-4 px-4 transition-all duration-200">
+        <div onClick={() => setShowBrand((prev) => !prev)} className="flex justify-between items-center border-t-2 border-gray-200 bg-white font-semibold py-4 transition-all duration-200">
           About the Brand{" "}
           <BsChevronDown
             onClick={() => setShowBrand((prev) => !prev)}
@@ -231,7 +231,7 @@ const ProductDetails = ({
         </div>
         <div
           className={`${showBrand ? "scale-y-100 h-full" : "scale-y-0 h-0"
-            } overflow-hidden w-full px-4 transition-all duration-200 grid grid-cols-2 gap-y-4 border-gray-200`}
+            } overflow-hidden w-full transition-all duration-200 gap-y-4 border-gray-200`}
         >
           <p>{brandDescription ? brandDescription : "N/A"}</p>
         </div>
@@ -241,7 +241,7 @@ const ProductDetails = ({
       {/* REVIEWS START */}
 
       <div>
-        <div onClick={() => setShowReviews((prev) => !prev)} className="flex justify-between items-center border-y-2 border-gray-200 bg-white font-semibold py-4 px-4 transition-all duration-200">
+        <div onClick={() => setShowReviews((prev) => !prev)} className="flex justify-between items-center border-y-2 border-gray-200 bg-white font-semibold py-4 transition-all duration-200">
           Reviews{`(${productReviews?.length})`}
           <BsChevronDown
             onClick={() => setShowReviews((prev) => !prev)}
@@ -251,7 +251,7 @@ const ProductDetails = ({
         </div>
         <div
           className={`${showReviews ? "scale-y-100 h-full" : "scale-y-0 h-0"
-            } w-full px-4 transition-all duration-200 border-gray-200 max-h-[360px] overflow-auto`}
+            } w-full transition-all duration-200 border-gray-200 max-h-[360px] overflow-auto`}
         >
           <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col gap-2 my-2 pb-3 mb-4 border-b border-b-gray-300">
             <p className="text-sm">Add a Review &nbsp;

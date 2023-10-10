@@ -402,9 +402,6 @@ export async function getStaticProps({ params: { slug } }) {
     `api/coupons?filters[code]=GIFT&populate=*`
   );
 
-  // Define the revalidation time in seconds (3600 seconds = 1 hour)
-  const revalidateInSeconds = 3600;
-
   // console.log("GSPROP on PRODUCT PAGE")
 
   return {
@@ -413,7 +410,5 @@ export async function getStaticProps({ params: { slug } }) {
       relatedProducts,
       giftCoupon: giftCoupon?.data[0],
     },
-    // Set the revalidate option for revalidation every hour
-    revalidate: revalidateInSeconds,
   };
 }

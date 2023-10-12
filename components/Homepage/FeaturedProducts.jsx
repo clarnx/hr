@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../ProductCard";
 import { fetchDataFromApi } from "../../libs/api";
-// import Carousel from "../Carousel";
 import Timer from "./Timer";
 import MinimalProductCard from "../MinimalProductCard"
 import Carousel from "react-multi-carousel";

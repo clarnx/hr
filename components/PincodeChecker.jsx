@@ -70,8 +70,8 @@ const PincodeChecker = ({ brandPincode }) => {
       <div className="block w-full ">
         <p className={`text-red-500 mt-2 mb-4`}>
           {availability.max && availability.min && (
-            <span className="text-black font-bold font-sans text-xs">
-              Delivery FREE by {availability.max} &nbsp; <br />
+            <span className="text-black font-bold font-sans text-sm">
+              Delivery FREE by <span className=" text-[#309c37]">{availability.max} &nbsp; <br /></span>
               {/* Fast Delivery by{" "}
               <span className="text-green-600">
                 {" "}

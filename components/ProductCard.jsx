@@ -67,7 +67,7 @@ const ProductCard = ({ product: completeProduct }) => {
         </div>
       </Link>
       <p className="flex flex-col gap-1 text-xs font-light sm:text-base text-left px-2 sm:px-4">
-        {product.Title.slice(0, 40)}...
+        {product.Title.slice(0, 70)}...
         <span className="text-sm text-gray-500">
           <span className="text-xs md:text-sm">By {product.brands.data[0].attributes.name}</span>
         </span>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDiscountPrice, loadStateFromLocalStorage, storeStateToLocal } from "../libs/helper";
-
+import { getDiscountPrice, loadStateFromLocalStorage } from "../libs/helper";
+import { clearUnusedLocalStorage, storeStateToLocal } from "../libs/helper";
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -44,14 +44,24 @@ export const cartSlice = createSlice({
       storeStateToLocal(state.cartItems);
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (p) => p.id !== action.payload.id
-      );
+      // Remove item from the cart
+      state.cartItems = state.cartItems.filter((p) => p.id !== action.payload.id);
+
+      // Update local storage after removal
       storeStateToLocal(state.cartItems);
+
+      // Optionally, clear unused data from local storage
+      clearUnusedLocalStorage();
     },
     clearCart: (state, action) => {
+      // Clear the cart
       state.cartItems = [];
+
+      // Update local storage after clearing
       storeStateToLocal(state.cartItems);
+
+      // Optionally, clear unused data from local storage
+      clearUnusedLocalStorage();
     },
     
     addCouponDiscount: (state, action) => {

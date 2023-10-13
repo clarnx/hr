@@ -233,7 +233,7 @@ export const getAddTocartIds = async (userId) => {
 
   let addToCartIds = await res?.cartItem?.ids;
 
-  return cartItemIds;
+  return addToCartIds;
 };
 
 

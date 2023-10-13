@@ -117,6 +117,7 @@ export const useLocalStorage = () => {
 }
 
 
+// Function to clear unused local storage items
 export const clearUnusedLocalStorage = () => {
   if (typeof window !== "undefined") {
     const currentTime = new Date().getTime();
@@ -124,17 +125,13 @@ export const clearUnusedLocalStorage = () => {
 
     try {
       const existingData = JSON.parse(localStorage.getItem(storageKey)) || [];
+      const unusedThresholdInMilliseconds = 6 * 60 * 60 * 1000;
 
-      // Define a threshold for how long an item can be considered unused
-      const unusedThresholdInMilliseconds = 1 * 24 * 60 * 60 * 1000; // 1 days
-
-      // Filter out items that have been used recently (within the threshold)
       const itemsToKeep = existingData.filter((item) => {
-        const itemLastUsedTimestamp = item.lastUsedTimestamp || 0; // Replace 'lastUsedTimestamp' with your timestamp property
+        const itemLastUsedTimestamp = item.lastUsedTimestamp || 0;
         return currentTime - itemLastUsedTimestamp <= unusedThresholdInMilliseconds;
       });
 
-      // Update the local storage with the filtered items
       localStorage.setItem(storageKey, JSON.stringify(itemsToKeep));
     } catch (error) {
       console.error("Error clearing unused data from localStorage:", error);
@@ -142,68 +139,31 @@ export const clearUnusedLocalStorage = () => {
   }
 };
 
+// Run clearUnusedLocalStorage initially and then set the interval
+clearUnusedLocalStorage();
+setInterval(clearUnusedLocalStorage, 6 * 60 * 60 * 1000);
 
+// Function to store data in local storage
 export const storeStateToLocal = (cartItems) => {
   if (typeof window !== "undefined") {
     try {
-      // Attempt to retrieve and parse existing data
       const existingData = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-      // Combine existing data with new data
       const updatedData = [...existingData, ...cartItems];
-
-      // Store the updated data
       localStorage.setItem("cartItems", JSON.stringify(updatedData));
     } catch (error) {
-      // Handle storage errors gracefully
       console.error("Error storing data in localStorage:", error);
-
-      // Implement a strategy to clear unused data if storage quota is exceeded
-      clearUnusedLocalStorage();
     }
   }
 };
 
-// export const loadStateFromLocalStorage = async (userData) => {
-//   if (typeof window !== "undefined") {
-//     if (userData && userData.isRegistered) {
-//       try {
-//         // Fetch cart items from the Strapi API for registered users
-//         const response = await axios.get("https://tak.haroth.com/api/users/${userId}?populate=cartItems"); // Replace with your Strapi API endpoint
-
-//         if (response.data && response.data.cartItems) {
-//           return response.data.cartItems;
-//         }
-//       } catch (error) {
-//         console.error("Error fetching cart items from Strapi:", error);
-//       }
-//     } else {
-//       // For guest users, fetch cart items from local storage
-//       const cartItems = localStorage.getItem("cartItems");
-//       const jsonCartItems = JSON.parse(cartItems);
-
-//       let modifiedCartItems = JSON.parse(JSON.stringify(cartItems));
-
-//       return jsonCartItems || [];
-//     }
-//   }
-
-//   return [];
-// };
-
-
-
-
+// Function to load data from local storage
 export const loadStateFromLocalStorage = () => {
   if (typeof window !== "undefined") {
     const cartItems = localStorage.getItem("cartItems");
-    let jsonCartItems = JSON.parse(cartItems);
-    console.log("JSON items", jsonCartItems)
-    console.log("CART ITEMS", JSON.parse(JSON.stringify(cartItems)))
-    let modifiedCartItems = JSON.parse(JSON.stringify(cartItems));
-    return jsonCartItems;
+    return JSON.parse(cartItems) || [];
   }
 };
+
 
 
 

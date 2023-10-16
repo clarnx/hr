@@ -76,7 +76,7 @@ const Header = ({
 
   const controlNavbar = () => {
 
-    if (window.scrollY > 30) {
+    if (window.scrollY > 20) {
       if (window.scrollY > lastScrollY && !isMobile) {
         setShow("-translate-y-[100px]");
       } else {

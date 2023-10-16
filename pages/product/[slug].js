@@ -388,8 +388,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  
-
   const product = await fetchDataFromApi(
     `api/products?populate=deep&filters[slug][$eq]=${slug}`
   );
@@ -402,13 +400,14 @@ export async function getStaticProps({ params: { slug } }) {
     `api/coupons?filters[code]=GIFT&populate=*`
   );
 
-  // console.log("GSPROP on PRODUCT PAGE")
-
+  // Revalidate the page every 1 hour (3600 seconds)
   return {
     props: {
       product,
       relatedProducts,
       giftCoupon: giftCoupon?.data[0],
     },
+    revalidate: 3600, // Set the revalidation interval in seconds
   };
 }
+

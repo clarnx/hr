@@ -21,7 +21,7 @@ const HeroBanner = ({ homePageDetails }) => {
         {details && (
           <Image
             className="w-full aspect-auto mt-3"
-            src={'/homepage_slide_n_1.webp'}
+            src={'/Homepage_slide_n_1.webp'}
             height={1000}
             width={2000}
             alt={bannerImage.alternativeText || "Banner Image"}

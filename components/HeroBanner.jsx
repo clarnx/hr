@@ -6,7 +6,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { AiFillCaretLeft, AiFillCaretRight, AiOutlineRight } from "react-icons/ai";
 const HeroBanner = ({ homePageDetails }) => {
   let details = homePageDetails?.data;
-  let bannerImage = details.attributes.bannerImage.data.attributes;
+  let bannerImage = details.attributes.bannerImage?.data?.attributes;
 
   // console.log("Details", details);
 
@@ -24,7 +24,7 @@ const HeroBanner = ({ homePageDetails }) => {
             src={'/durgapuja.webp'}
             height={1000}
             width={2000}
-            alt={bannerImage.alternativeText || "Banner Image"}
+            alt={bannerImage?.alternativeText || "Banner Image"}
           />
         )}
         

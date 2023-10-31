@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { PiCodesandboxLogoDuotone } from "react-icons/pi";
 import { useSelector } from "react-redux";
-import {SHIPROCKET_TOKEN} from "./urls"
+// import {SHIPROCKET_TOKEN} from "./urls"
 
 export const getDiscountedPricePercentage = (
   originalPrice,
@@ -33,62 +33,98 @@ export const initializeRazorpay = () => {
   });
 };
 
-export const isEmailValid = async (email) => {
-  let res = await axios.get(
-    `https://emailverifier.reoon.com/api/v1/verify?email=${emailPhone}&key=5IEzvBcwuNLQC5MF9KJxZsYj5KCfeOA8&mode=power`
-  );
-
-  console.log("RES", res.data.status);
-
-  if (res.data.status == "safe") {
-    return true;
-  }
-
-  return false;
-};
-
-export const getEstimatedDelivery = async (customerPincode, brandPincode) => {
-  let data = await fetch(
-    `https://apiv2.shiprocket.in/v1/external/courier/serviceability/?pickup_postcode=${brandPincode}&delivery_postcode=${customerPincode}&cod=1&weight=2`,
-    {
-      headers: {
-        Authorization: `Bearer ${SHIPROCKET_TOKEN}`,
-        "Content-Type": "application/json",
-        "User-Agent": "HTTP/1.1",
-        Accept: "/",
-      },
-    }
-  );
-
-  data = await data.json();
-
-  console.log("Pincode Response", data);
-
-  if (data.status == 200 || data.status || 202) {
-    const availableCourierCompanies = data?.data?.available_courier_companies;
-
-    console.log("Available Courier Comapnies", availableCourierCompanies);
-
-    const deliveryDays = availableCourierCompanies?.map(
-      (company) => company.estimated_delivery_days
+export const createShiprocketToken = async () => {
+  try {
+    const response = await axios.post(
+      'https://apiv2.shiprocket.in/v1/external/auth/login',
+      {
+        email: 'sameerkum098@gmail.com',
+        password: 'sameer090!',
+      }
     );
 
-    if (deliveryDays?.length > 0) {
-      console.log("max --> ", deliveryDays[0]);
-      console.log("min --> ", deliveryDays[deliveryDays.length - 1]);
-
-      return {
-        maxDays: deliveryDays[0] + 2,
-        minDays: deliveryDays[deliveryDays.length - 4],
-        maxDays: deliveryDays[0] + 3,
-      };
+    if (response.status === 200) {
+      // Assuming the token is available in the response
+      const generatedToken = response.data.token;
+      return generatedToken;
     } else {
-      return { maxDays: null, minDays: null }
+      throw new Error('Failed to generate a new Shiprocket token');
     }
-  } else {
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getEstimatedDelivery = async (customerPincode, brandPincode, token) => {
+  try {
+    const token = await createShiprocketToken();
+    const response = await fetch(
+      `https://apiv2.shiprocket.in/v1/external/courier/serviceability/?pickup_postcode=${brandPincode}&delivery_postcode=${customerPincode}&cod=1&weight=2`,
+      {
+        // method: 'GET', // Make sure it's a GET request
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'HTTP/1.1',
+          Accept: '*/*',
+        },
+      }
+    );
+    
+    const data = await response.json();
+
+    console.log('Pincode Response', data);
+
+    if (data.status === 200 || data.status === 202) {
+      const availableCourierCompanies = data?.data?.available_courier_companies;
+
+      console.log('Available Courier Companies', availableCourierCompanies);
+
+      const deliveryDays = availableCourierCompanies?.map(
+        (company) => company.estimated_delivery_days
+      );
+
+      if (deliveryDays?.length > 0) {
+        console.log('max -->', deliveryDays[0]);
+        console.log('min -->', deliveryDays[deliveryDays.length - 1]);
+
+        return {
+          maxDays: deliveryDays[0] + 2,
+          minDays: deliveryDays[deliveryDays.length - 4],
+        };
+      } else {
+        return { maxDays: null, minDays: null };
+      }
+    } else {
+      return { maxDays: null, minDays: null };
+    }
+  } catch (error) {
+    console.error('Error:', error);
     return { maxDays: null, minDays: null };
   }
 };
+
+export const getShiprocketToken = async () => {
+  // Implementation for getting the Shiprocket token
+  try {
+    const response = await axios.get('https://tak.haroth.com/api/shiprocket-token', {
+      headers: {
+        Authorization: 'Bearer 0593b4624ee9316ea2b57f82f3fe365d69ac91ae3c0eb178a61552447f8e4c77f2fb49126fece3365abd58b8fa9b9597e232cb16980af0557c8b4f9c4effcfcb6d5a7bef3ea98e3ebb541d25790ae37e6ccd68972df17518a8953c7e603a6acef24fa288591884a92ebf264ed4ea9df999ed89f40b6fb10132fce940397b7388',
+      },
+    });
+
+    if (response.status === 200) {
+      const token = response.data.token;
+      return token;
+    } else {
+      throw new Error('Failed to get Shiprocket token');
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 
 
 export const getDiscountPrice = (oneQuantityPrice, quantity, discountPercentage, maxAmount) => {

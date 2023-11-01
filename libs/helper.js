@@ -357,14 +357,14 @@ export const isEqual = function (obj1, obj2) {
 
 
 // Price Format for currency
-export function formatPrice(price) {
-  return price.toLocaleString('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-  });
-}
+// export function formatPrice(price) {
+//   return price.toLocaleString('en-IN', {
+//     style: 'currency',
+//     currency: 'INR',
+//   });
+// }
 
-function formatPrice(price) {
+export function formatPrice(price) {
   const formattedPrice = price.toLocaleString('en-IN', {
     style: 'currency',
     currency: 'INR',

@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { BsStopwatchFill } from "react-icons/bs"
 import { formatPrice } from '../libs/helper';
-import { formatPrice } from '../libs/helper';
 
 const Countdown = ({ countdown, coupon, productPrice }) => {
 

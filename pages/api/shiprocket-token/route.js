@@ -1,6 +1,7 @@
-const { fetchDataFromApi, postDataToApi } = require("@/lib/api");
-const axios = require("axios");
-const { addDays } = require("date-fns");
+// import { fetchDataFromApi, postDataToApi } from "@/lib/api";
+import axios from "axios";
+// import { addDays } from "date-fns";
+import { fetchDataFromApi, postDataToApi } from "../../../libs/api";
 
 async function GET(req) {
   try {

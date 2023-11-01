@@ -311,3 +311,32 @@ export const updateUser = async (data, id) => {
 
 }
 
+const postDataToApi = async (url, data, job, isUser = false) => {
+  let response;
+
+  if (isUser) {
+    response = await axios.post(
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        },
+      }
+    );
+  } else {
+    response = await axios.post(
+      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${url}`,
+      {
+        data: data,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        },
+      }
+    );
+  }
+
+  return response;
+};

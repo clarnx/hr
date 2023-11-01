@@ -33,35 +33,41 @@ export const initializeRazorpay = () => {
   });
 };
 
-export const createShiprocketToken = async () => {
+
+// Define the function to get the Shiprocket token
+export const getShiprocketToken = async () => {
   try {
-    const response = await axios.post(
-      'https://apiv2.shiprocket.in/v1/external/auth/login',
-      {
-        email: 'sameerkum098@gmail.com',
-        password: 'sameer090!',
-      }
-    );
+    const response = await axios.get('https://tak.haroth.com/api/shiprocket-token', {
+      headers: {
+        Authorization: 'Bearer 0593b4624ee9316ea2b57f82f3fe365d69ac91ae3c0eb178a61552447f8e4c77f2fb49126fece3365abd58b8fa9b9597e232cb16980af0557c8b4f9c4effcfcb6d5a7bef3ea98e3ebb541d25790ae37e6ccd68972df17518a8953c7e603a6acef24fa288591884a92ebf264ed4ea9df999ed89f40b6fb10132fce940397b7388',
+      },
+    });
 
     if (response.status === 200) {
-      // Assuming the token is available in the response
-      const generatedToken = response.data.token;
-      return generatedToken;
+      const token = response.data.data.attributes.token;
+      console.log('Shiprocket Token:', token); // Log the retrieved token
+      return token;
     } else {
-      throw new Error('Failed to generate a new Shiprocket token');
+      console.error('Failed to get Shiprocket token'); // Log the error
+      throw new Error('Failed to get Shiprocket token');
     }
   } catch (error) {
+    console.error('Error:', error); // Log any errors
     throw error;
   }
 };
 
-export const getEstimatedDelivery = async (customerPincode, brandPincode, token) => {
+
+// Define the function to get the estimated delivery
+export const getEstimatedDelivery = async (customerPincode, brandPincode) => {
   try {
-    const token = await createShiprocketToken();
+    const token = await getShiprocketToken(); // Get the Shiprocket token
+
+    // Make a request to get the estimated delivery
     const response = await fetch(
       `https://apiv2.shiprocket.in/v1/external/courier/serviceability/?pickup_postcode=${brandPincode}&delivery_postcode=${customerPincode}&cod=1&weight=2`,
       {
-        // method: 'GET', // Make sure it's a GET request
+        method: 'GET', // Ensure it's a GET request
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -104,25 +110,7 @@ export const getEstimatedDelivery = async (customerPincode, brandPincode, token)
   }
 };
 
-export const getShiprocketToken = async () => {
-  // Implementation for getting the Shiprocket token
-  try {
-    const response = await axios.get('https://tak.haroth.com/api/shiprocket-token', {
-      headers: {
-        Authorization: 'Bearer 0593b4624ee9316ea2b57f82f3fe365d69ac91ae3c0eb178a61552447f8e4c77f2fb49126fece3365abd58b8fa9b9597e232cb16980af0557c8b4f9c4effcfcb6d5a7bef3ea98e3ebb541d25790ae37e6ccd68972df17518a8953c7e603a6acef24fa288591884a92ebf264ed4ea9df999ed89f40b6fb10132fce940397b7388',
-      },
-    });
 
-    if (response.status === 200) {
-      const token = response.data.token;
-      return token;
-    } else {
-      throw new Error('Failed to get Shiprocket token');
-    }
-  } catch (error) {
-    throw error;
-  }
-};
 
 
 

@@ -25,6 +25,7 @@ import RelatedProducts from "../../components/RelatedProducts/RelatedProducts";
 import Link from "next/link";
 import ProductColors from "../../components/ProductColors";
 import ProductSaleOffer from "../../components/ProductSaleOffer";
+import { formatPrice } from "../../libs/helper";
 
 const ProductPage = ({ product, relatedProducts, giftCoupon }) => {
   // console.log("PRODUCT --> ", product);
@@ -152,9 +153,9 @@ const ProductPage = ({ product, relatedProducts, giftCoupon }) => {
             {/* PRODUCT PRICE */}
             <div className="flex flex-wrap items-center">
               <p className="mr-2 flex gap-2 text-xl font-bold">
-                Rs &#8377;{p.todaysDeal || p.selling_price}
-                <span className="text-base self-end text-gray-500  font-medium line-through">
-                  &#8377;{p.original_price}
+                Rs {formatPrice(p.todaysDeal || p.selling_price)}
+                <span className="text-base self-end text-gray-500 font-medium line-through">
+                  Rs {formatPrice(p.original_price)}
                 </span>
               </p>
               {p.original_price && (

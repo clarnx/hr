@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { BsStopwatchFill } from "react-icons/bs"
+import { formatPrice } from '../libs/helper';
+import { formatPrice } from '../libs/helper';
 
 const Countdown = ({ countdown, coupon, productPrice }) => {
 
@@ -42,9 +44,9 @@ const Countdown = ({ countdown, coupon, productPrice }) => {
 
   return (
     <div className='flex flex-col gap-1'>
-    <p className='font-bold text-green-600'>Today&apos;s Deal <span className='ml-1 text-black text-2xl md:text-3xl'>₹{coupon.code === "GIFT" ? productPrice : productPrice - discountAmount}</span> </p>
+    <p className='font-bold text-green-600'>Today&apos;s Deal <span className='ml-1 text-black text-2xl md:text-3xl'>{formatPrice(coupon.code === "GIFT" ? productPrice : productPrice - discountAmount)}</span> </p>
     <p className="text-xs w-full flex gap-2 items-center sm:text-base text-red-600">Offer Expires in <BsStopwatchFill  /> {timer} </p>
-    <p className='text-green-500'>Apply Code <span className='font-bold'>{coupon.code}</span> To Get {coupon.code === "GIFT" ? <>Gift Card of <span className='font-bold'>₹{discountAmount}</span></> :`Extra ${coupon.percentage}% Discount` }</p>
+    <p className='text-green-500'>Apply Code : <span className='font-bold text-gray-200 bg-slate-600 px-1'>{coupon.code}</span> To Get {coupon.code === "GIFT" ? <>Gift Card of <span className='font-bold'>{formatPrice(discountAmount)}/-</span></> :`Extra ${coupon.percentage}% Discount` }</p>
     </div>
   )
 }

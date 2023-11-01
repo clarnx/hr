@@ -1,69 +1,61 @@
 const axios = require('axios');
-// const { addDays, format } = require('date-fns');
+const { addDays } = require('date-fns');
 
-async function GET(req) {
-  try {
-    // Fetch the token from the database
-    const getTokenFromDatabaseResponse = await axios.get(
+// Variable to store the token, initially set to null
+let token = null;
+
+// Function to get or regenerate the token
+async function getShiprocketToken() {
+  // Check if a token is already available and not expired
+  if (token) {
+    const updatedAt = token.updatedAt;
+    const updatedAtDate = new Date(updatedAt);
+    const after10DaysDate = addDays(updatedAtDate, 10);
+    const currentDate = new Date();
+
+    if (currentDate < after10DaysDate) {
+      // Token is still valid, return it
+      return token.token;
+    }
+  }
+
+  // Token is expired or not available, regenerate it
+  const tokenGenerationResponse = await axios.post(
+    'https://apiv2.shiprocket.in/v1/external/auth/login',
+    {
+      email: 'sameerkum098@gmail.com',
+      password: 'sameer090!',
+    }
+  );
+
+  if (tokenGenerationResponse.status === 200) {
+    const generatedToken = tokenGenerationResponse.data.token;
+
+    // Now post this token to your database
+    const postResponse = await axios.post(
       'https://tak.haroth.com/api/shiprocket-token',
       {
-        headers: {
-          Authorization: 'Bearer 0593b4624ee9316ea2b57f82f3fe365d69ac91ae3c0eb178a61552447f8e4c77f2fb49126fece3365abd58b8fa9b9597e232cb16980af0557c8b4f9c4effcfcb6d5a7bef3ea98e3ebb541d25790ae37e6ccd68972df17518a8953c7e603a6acef24fa288591884a92ebf264ed4ea9df999ed89f40b6fb10132fce940397b7388',
-        },
+        token: generatedToken,
+        updatedAt: new Date().toISOString(), // Store the timestamp of when the token was generated
       }
     );
 
-    if (getTokenFromDatabaseResponse.status === 200) {
-      const token = getTokenFromDatabaseResponse.data.data.attributes.token;
-      const updatedAt = getTokenFromDatabaseResponse.data.data.attributes.updatedAt;
-
-      const updatedAtDate = new Date(updatedAt);
-      const after10DaysDate = addDays(updatedAtDate, 10);
-      const currentDate = new Date();
-
-      if (currentDate < after10DaysDate) {
-        // Token is still valid, return it
-        return Response.json({ token }, { status: 200 });
-      } else {
-        // Token has expired, regenerate it
-        const tokenGenerationResponse = await axios.post(
-          'https://apiv2.shiprocket.in/v1/external/auth/login',
-          {
-            email: 'sameerkum098@gmail.com',
-            password: 'sameer090!',
-          }
-        );
-
-        console.log('NEW SHIPROCKET TOKEN WAS GENERATED');
-        if (tokenGenerationResponse.status === 200) {
-          const generatedToken = tokenGenerationResponse.data.token;
-
-          // Now post this token to your database
-          const postResponse = await axios.post(
-            'https://tak.haroth.com/api/shiprocket-token',
-            {
-              token: generatedToken,
-            }
-          );
-
-          if (postResponse.status === 200) {
-            console.log('TOKEN was successfully posted in your database');
-          }
-
-          return Response.json({ token: generatedToken }, { status: 200 });
-        } else {
-          throw new Error('ERROR GENERATING NEW TOKEN');
-        }
-      }
-    } else {
-      throw new Error('ERROR FETCHING TOKEN FROM DATABASE');
+    if (postResponse.status === 200) {
+      console.log('TOKEN was successfully posted in your database');
+      // Set the token variable to the newly generated token
+      token = {
+        token: generatedToken,
+        updatedAt: new Date().toISOString(),
+      };
     }
-  } catch (error) {
-    console.log('ERROR GETTING SHIPROCKET API TOKEN', error.message);
-    return Response.json({ message: 'ERROR FETCHING TOKEN' }, { status: 404 });
+
+    return generatedToken;
+  } else {
+    throw new Error('ERROR GENERATING NEW TOKEN');
   }
 }
 
+// Export the getShiprocketToken function
 module.exports = {
-  GET,
+  getShiprocketToken,
 };

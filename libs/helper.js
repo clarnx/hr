@@ -354,3 +354,22 @@ export const isEqual = function (obj1, obj2) {
   }
   return false;
 }
+
+
+// Price Format for currency
+export function formatPrice(price) {
+  return price.toLocaleString('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+  });
+}
+
+function formatPrice(price) {
+  const formattedPrice = price.toLocaleString('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+  });
+
+  // Remove .00 from the formatted price
+  return formattedPrice.replace(/(\.\d*[^1-9])|(\.00$)/, '');
+}

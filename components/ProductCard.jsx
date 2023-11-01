@@ -13,6 +13,8 @@ import WishlistButton from "./WishlistButton";
 import { BiSolidCaretUpSquare } from "react-icons/bi";
 import Rating from "./Rating";
 import hAssuredTag from "../public/hAssuredCroped.png"
+import { formatPrice } from "../libs/helper";
+
 const ProductCard = ({ product: completeProduct }) => {
 
   // console.log("COmplete Product",completeProduct)
@@ -84,11 +86,11 @@ const ProductCard = ({ product: completeProduct }) => {
       </p>
       <p className="w-full flex items-baseline px-2 sm:px-4">
         <span className="flex flex-col gap-0">
-          <span className="text-[10px] sm:text-xs md:text-sm text-green-700">Today&apos;s deal</span>
+          <span className="text-[10px] sm:text-xs md:text-sm text-green-700">Today's deal</span>
           <span className="sm:text-lg text-base font-bold lg:tracking-wider">
-            ₹{product.selling_price}{" "}
+            {formatPrice(product.selling_price)}{" "}
             <span className="text-[10px] sm:text-sm lg:text-base text-gray-400 font-light line-through">
-              ₹{product.original_price}
+              {formatPrice(product.original_price)}
             </span>
           </span>
         </span>

@@ -11,10 +11,11 @@ import { onOpen } from "../store/loginModalSlice";
 import { useRouter } from "next/router";
 import logo from "../public/logo.webp";
 import { useForm } from "react-hook-form";
-import { addCouponDiscount, addGiftDiscount, updateFastDelivery } from "../store/cartSlice";
+import { addCouponDiscount, addGiftDiscount, updateFastDelivery, updateCart } from "../store/cartSlice";
 import CouponCode from "../components/CouponCode";
 import CheckoutFooter from "../components/CheckoutFooter";
 import Head from "next/head";
+import { loadStateFromLocalStorage } from "../libs/helper";
 
 
 const Cart = ({ notSignedIn }) => {
@@ -37,8 +38,19 @@ const Cart = ({ notSignedIn }) => {
   } = useForm();
 
   useEffect(() => {
-    setHasMounted(true)
-  }, [])
+    setHasMounted(true);
+    updateCartItemsFromLocalStorage(); // Load cart items from local storage
+  }, []);
+
+  // Function to update cart items from local storage
+  const updateCartItemsFromLocalStorage = () => {
+    const localCartItems = loadStateFromLocalStorage(); // Load cart items from local storage
+
+    if (localCartItems) {
+      // Dispatch an action to update the cart items in the Redux store
+      dispatch(updateCart(localCartItems));
+    }
+  };
 
   let amounts = useMemo(() => {
     let totalOriginalPrice = 0;

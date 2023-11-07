@@ -166,100 +166,76 @@ export const getWishlistedProducts = async (wishlistIds) => {
 
 // add to cart for strapi 
 export const cartItem = async (userId, productId, isAddToCart) => {
-  console.log("PRODUCT ID", productId);
-  console.log("userId", userId);
-  let addToCart = null;
+  try {
+    const addToCartIds = await getAddTocartIds(userId);
+    let newIds = [];
 
-  let addToCartIds = await getAddTocart(userId);
-  let newIds = [];
-
-  if (isAddToCart) {
-    let newIds = addToCartIds?.filter((i) => i !== productId);
-
-    // console.log("NEW IDS", newIds);
-
-    addToCartProduct = await fetch(`${API_URL}api/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${STRAPI_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        wishlist: {
-            ids: newIds
-        },
-      }),
-    });
-  } else {
-
-
-    // console.log("wishlisted Ids", wishlistedIds)
-    if (addToCartIds?.length > 0) {
-      newIds = addToCartIds;
-      
-      console.log("Ran the if part", newIds)
+    if (isAddToCart) {
+      newIds = addToCartIds?.filter((id) => id !== productId);
+    } else {
+      if (addToCartIds?.length > 0) {
+        newIds = addToCartIds;
+      }
+      newIds.push(productId);
     }
-    newIds.push(productId);
 
-    addToCartProduct = await fetch(`${API_URL}api/users/${userId}`, {
+    const response = await fetch(`${API_URL}api/users/${userId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${STRAPI_API_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        wishlist: {
+        cartItem: {
           ids: newIds,
         },
       }),
     });
+
+    if (response.ok) {
+      const addToCartProduct = await response.json();
+      return addToCartProduct;
+    } else {
+      throw new Error(`Failed to update cart: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error in cartItem:", error);
+    throw error;
   }
-
-  addToCartProduct = await addToCartProduct.json();
-
-  // console.log("WISHLISTED PRODUCT", wishlistedProduct);
-  return addToCartProduct;
 };
 
 export const getAddTocartIds = async (userId) => {
-  // console.log("received user id", userId);
-
-  let res = await fetchDataFromApi(`api/users/${userId}?populate=cartItem`);
-
-  res = await res;
-
-
-  // console.log("WISHLISTED PRODUCTS", await res?.wishlist?.ids);
-
-  let addToCartIds = await res?.cartItem?.ids;
-
-  return addToCartIds;
+  try {
+    const res = await fetchDataFromApi(`api/users/${userId}?populate=cartItem`);
+    const addToCartIds = res?.cartItem?.ids || [];
+    return addToCartIds;
+  } catch (error) {
+    console.error("Error in getAddTocartIds:", error);
+    throw error;
+  }
 };
 
-
-
 export const addToCartProducts = async (addToCartIds) => {
+  try {
+    let dynamicURL = `api/products?`;
 
-  let dynamicURL = `api/products?`
+    addToCartIds?.forEach((id, i) => {
+      dynamicURL = dynamicURL + `filters[id][$in][${i}]=${id}&`;
+    });
 
+    dynamicURL = dynamicURL + "populate=*";
 
-  addToCartIds?.map((id, i) => {
-    dynamicURL = dynamicURL + `filters[id][$in][${i}]=${id}&`
-  })
+    console.log("final url ", dynamicURL);
 
-  dynamicURL = dynamicURL + 'populate=*'
+    const res = await fetchDataFromApi(dynamicURL);
+    const addToCartProducts = res.data;
+    return addToCartProducts;
+  } catch (error) {
+    console.error("Error in addToCartProducts:", error);
+    throw error;
+  }
+};
 
-  console.log("final url ", dynamicURL);
-
-  let res = await fetchDataFromApi(dynamicURL);
-
-  let addToCartProducts = await res;
-
-  console.log("addToCart product", addToCartProducts)
-
-  return addToCartProducts.data
-
-}
 
 // end add to cart strapi
 

@@ -292,17 +292,18 @@ export async function getStaticProps({ params: { slug } }) {
     `api/products?filters[sub_categories][subcategory_slug][$eq]=${slug}&populate=*&pagination[pageSize]=100`
   );
 
-  // Calculate the revalidation time (in seconds)
-  const revalidateTime = 3600; // 1 hour (adjust as needed)
+  // Calculate the revalidation time (in seconds) to 30 minutes
+  const revalidateTime = 1800; // 30 minutes
 
   return {
     props: {
       products: products.data,
       slug: slug,
     },
-    revalidate: revalidateTime, // Set the revalidation time
+    revalidate: revalidateTime, // Set the revalidation time to 30 minutes
   };
 }
+
 
 
 // export async function getServerSideProps(context) {

@@ -16,6 +16,7 @@ import CategoryCarousel from "../components/CategoryCarousel";
 import WoodenStore from "../components/Homepage/WoodenStore";
 import TopPickedDining from "../components/Homepage/TopPickedDining";
 import { HomepageInformation } from "../components/HomepageInformation";
+import SignupBar from "../components/SignupBar";
 
 const Home = ({ products, homePageDetails, topPickedSofas, categories }) => {
   let isMobile = false;
@@ -56,6 +57,8 @@ const Home = ({ products, homePageDetails, topPickedSofas, categories }) => {
           <CategoryCarousel categories={categories} />
 
           <HeroBanner homePageDetails={homePageDetails} />
+
+          <SignupBar/>
 
           <FeaturedProducts />
 

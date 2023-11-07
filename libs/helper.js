@@ -129,18 +129,6 @@ export const getDiscountPrice = (oneQuantityPrice, quantity, discountPercentage,
 
 }
 
-export const useLocalStorage = () => {
-  useEffect(() => {
-    const cartItems = localStorage.getItem("cartItems");
-    let jsonCartItems = JSON.parse(cartItems);
-    console.log("JSON items", jsonCartItems)
-    console.log("CART ITEMS", JSON.parse(JSON.stringify(cartItems)))
-    let modifiedCartItems = JSON.parse(JSON.stringify(cartItems));
-    return jsonCartItems;
-  })
-}
-
-
 // Function to clear unused local storage items
 export const clearUnusedLocalStorage = () => {
   if (typeof window !== "undefined") {
@@ -187,6 +175,28 @@ export const loadStateFromLocalStorage = () => {
     return JSON.parse(cartItems) || [];
   }
 };
+
+// Define the updateCart function
+export const updateCart = (state, action) => {
+  state.cartItems = state.cartItems.map((p) => {
+    if (p.id === action.payload.id) {
+      if (action.payload.key === "quantity") {
+        p.attributes.selling_price = p.oneQuantityPrice * action.payload.val;
+      }
+      return { ...p, [action.payload.key]: action.payload.val };
+    }
+    return p;
+  });
+
+  // Update the last used timestamp for the cart items being modified
+  state.cartItems.forEach((item) => {
+    item.lastUsedTimestamp = new Date().getTime();
+  });
+
+  storeStateToLocal(state.cartItems);
+};
+
+
 
 
 

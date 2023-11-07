@@ -1,70 +1,103 @@
-import React, { useState, useEffect } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import Image from "next/image";
-import { BiArrowBack } from "react-icons/bi";
-import { AiFillCaretLeft, AiFillCaretRight, AiOutlineRight } from "react-icons/ai";
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { getEstimatedDelivery, getShiprocketToken } from '../libs/helper'; // Import getShiprocketToken
+import { IoMdLocate } from 'react-icons/io';
 
-const HeroBanner = ({ homePageDetails }) => {
-  const [saleOfferImages, setSaleOfferImages] = useState([]); // Ensure useState is imported
+const PincodeChecker = ({ brandPincode }) => {
+  const [availability, setAvailability] = useState('');
+  const [pincodeInput, setPincodeInput] = useState('');
+  const [isFetching, setIsFetching] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    // Handle form submission as before
+    // ...
+  };
+
+  // Fetch the result when the user enters their 6-digit pincode
   useEffect(() => {
-    // Fetch saleOffer data from your Strapi API endpoint
-    fetch("http://tak.haroth.com/api/homepage?populate=*")
-      .then((response) => response.json())
-      .then((data) => {
-        const saleOfferImage = data.saleOffer.attributes.formats.medium.url; // Use the URL of the 'medium' format
-        setSaleOfferImages([saleOfferImage]);
-      })
-      .catch((error) => {
-        console.error("Error fetching saleOffer data:", error);
-      });
-  }, []);
+    const fetchEstimatedDelivery = async () => {
+      if (pincodeInput.length === 6) {
+        try {
+          setIsFetching(true);
+
+          const token = await getShiprocketToken(); // Get the Shiprocket token
+
+          const { maxDays, minDays } = await getEstimatedDelivery(
+            pincodeInput,
+            brandPincode,
+            token
+          );
+
+          if (maxDays && minDays) {
+            let maxDate = new Date(new Date().getTime() + maxDays * 10 * 60 * 60 * 1000).toDateString();
+            let minDate = new Date(new Date().getTime() + minDays * 24 * 60 * 60 * 1000).toDateString();
+
+            setAvailability({ max: maxDate, min: minDate });
+          } else {
+            setError('pincode', { type: 'custom', message: 'Invalid Pincode' });
+            setAvailability('Invalid Pin Code');
+          }
+        } catch (error) {
+          setError('pincode', { type: 'custom', message: 'Something Went Wrong' });
+        } finally {
+          setIsFetching(false);
+        }
+      } else {
+        // Clear the result when digits are less than 6
+        setAvailability('');
+      }
+    };
+
+    fetchEstimatedDelivery();
+  }, [pincodeInput, brandPincode]);
 
   return (
-    <div className="w-screen px-6 md:px-16 lg:px-24 mb-8">
-      <div className="w-full relative">
-        {saleOfferImages.length > 0 && (
-          <Image
-            className="w-full aspect-auto mt-3"
-            src={saleOfferImages[0]} // Use the first sale offer image URL
-            height={1000}
-            width={2000}
-            alt="Sale Offer Image"
-          />
-        )}
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-h-min flex justify-center items-center gap-1"
+      >
+        <input
+          className="flex-[1] border-2 border-gray-300 bg-white py-[1.5%] px-4"
+          placeholder="Enter Pincode"
+          type="number"
+          id="pincode"
+          {...register('pincode', {
+            required: true,
+          })}
+          value={pincodeInput}
+          onChange={(e) => setPincodeInput(e.target.value)}
+        />
+        <button
+          className="flex-[1] flex items-center gap-1 px-2 self-stretch text-[#ff6536] hover:opacity-50 transition duration-200 text-base sm:text-lg font-medium cursor-pointer"
+          type="submit"
+        >
+          <IoMdLocate size={20} /> Locate
+        </button>
+      </form>
 
-        <div className="absolute left-0 max-lg:top-full lg:bottom-[1/3] bg-[#f8f9fa] text-black w-full lg:max-w-fit text-center">
-          <Carousel
-            showArrows={false}
-            showIndicators={false}
-            showStatus={false}
-            showThumbs={false}
-            autoPlay={true}
-            interval={2000}
-            infiniteLoop={true}
-            className="text-center"
-          >
-            {saleOfferImages.length > 0 ? (
-              saleOfferImages.map((imageURL, i) => (
-                <div key={i}>
-                  <Image
-                    className="w-full aspect-auto"
-                    src={imageURL}
-                    height={1000}
-                    width={2000}
-                    alt={`Sale Offer Image ${i + 1}`}
-                  />
-                </div>
-              ))
-            ) : (
-              <p>Loading saleOffer image...</p>
-            )}
-          </Carousel>
-        </div>
+      <div className="block w-full ">
+        <p className={`text-red-500 mt-2 mb-4`}>
+          {isFetching && <span>Loading...</span>}
+          {!isFetching && availability.max && availability.min && (
+            <span className="text-black font-bold font-sans text-sm">
+              Delivery FREE by <span className=" text-[#309c37]">{availability.max} &nbsp; <br /></span>
+              <p> Assembly ₹799 Provided by TAK Decor (optional)</p>
+            </span>
+          )}
+          {errors?.pincode?.type === 'required' && 'Pincode is required'}
+          {errors?.pincode?.type === 'custom' && errors.pincode.message}
+        </p>
       </div>
-    </div>
+    </>
   );
 };
 
-export default HeroBanner;
+export default PincodeChecker;

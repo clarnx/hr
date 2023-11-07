@@ -60,7 +60,7 @@ const FeaturedProducts = () => {
 
 
   return (
-    <div className="min-h-max w-screen sm:mt-20 lg:mt-18 pb-2 md:pb-8 px-6 md:px-16 lg:px-24 max-sm:pt-6 flex flex-col gap-2">
+    <div className="min-h-max w-screen sm:mt-20 lg:mt-10 pb-2 md:pb-8 px-6 md:px-16 lg:px-24 max-sm:pt-6 flex flex-col gap-2">
       <div className="w-full flex flex-col md:flex-row gap-0 justify-between">
         <h2 className="min-w-fit text-lg sm:text-xl md:text-2xl md:mb-2 lg:text-3xl font-bold">
           Featured Products

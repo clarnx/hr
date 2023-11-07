@@ -26,7 +26,7 @@ const Header = ({
   const [openOffer, setOpenOffer] = useState(true)
   const [isOpen, setIsOpen] = useState(true)
   // const { isOpen } = useSelector(state => state.headerOffer);
-  const [show, setShow] = useState(isOpen ? "translate-y-[30px]" : 'translate-y-0')
+  const [show, setShow] = useState(isOpen ? "translate-y-[0px]" : 'translate-y-0')
   const dispatch = useDispatch();
 
   
@@ -76,14 +76,14 @@ const Header = ({
 
   const controlNavbar = () => {
 
-    if (window.scrollY > 20) {
+    if (window.scrollY > 0) {
       if (window.scrollY > lastScrollY && !isMobile) {
         setShow("-translate-y-[100px]");
       } else {
         setShow("shadow-xs");
       }
     } else {
-      setShow(isOpen ? "translate-y-[30px]" : 'translate-y-0');
+      setShow(isOpen ? "translate-y-[0px]" : 'translate-y-0');
     }
     setLastScrollY(window.scrollY);
   };
@@ -133,12 +133,12 @@ const Header = ({
         <li>BULK ORDER</li>
         <li>TRACK ORDER</li>
       </div> */}
-      <div className={`w-screen headerOffer flex items-center justify-center bg-sky-900 text-white text-center  ${isOpen ? "h-[30px]" : "h-0"} transition-all relative`}> USE CODE: <div className="text-bold text-red-300 mx-2"> NEW25 </div> Flat 25% Off on Every Products for <Link href="/my-profile" target="_Blank" className="text-red-300 mx-2">  New Users Only.</Link>
+      {/* <div className={`w-screen headerOffer flex items-center justify-center bg-sky-900 text-white text-center  ${isOpen ? "h-[30px]" : "h-0"} transition-all relative`}> USE CODE: <div className="text-bold text-red-300 mx-2"> NEW25 </div> Flat 25% Off on Every Products for <Link href="/my-profile" target="_Blank" className="text-red-300 mx-2">  New Users Only.</Link>
     <AiOutlineClose onClick={() => {
       setShow("translate-y-0")
       setIsOpen(false)
       }} className="absolute right-8 top-[6px] cursor-pointer text-white" />
-      </div>
+      </div> */}
  
       <header className={`flex flex-col justify-center items-center list-none font-semibold fixed top-0 bg-white z-50 ${show} transition-all duration-300`}>
 

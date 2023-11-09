@@ -7,7 +7,7 @@ import { AiFillCaretLeft, AiFillCaretRight, AiOutlineRight } from "react-icons/a
 
 const HeroBanner = ({ homePageDetails }) => {
   let details = homePageDetails?.data;
-  let bannerImage = details.attributes.bannerImage?.data?.attributes;
+  let bannerImage = details.attributes.bannerImage.data.attributes;
 
   // console.log("Details", details);
 
@@ -39,15 +39,16 @@ const HeroBanner = ({ homePageDetails }) => {
           </Carousel>
         </div>
         
-        {details && (
+        {details && bannerImage && (
           <Image
             className="w-full aspect-auto mt-2 py-8"
             src={'/DiwaliGreatestSale.webp'}
             height={1000}
             width={2000}
-            alt={bannerImage?.alternativeText || "Banner Image"}
+            alt={bannerImage.alternativeText || "Banner Image"}
           />
         )}
+
         
 
         

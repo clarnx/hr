@@ -7,11 +7,18 @@ const nextConfig = {
     domains: [
       "tak.haroth.com", "nextjspics.s3.ap-south-1.amazonaws.com", "img.haroth.com", "cdn.haroth.com"
     ],
-    experimental: {
-      appDir: false,
-    },
   },
 }
+
+// const withSitemap = require('next-sitemap');
+
+// module.exports = withSitemap({
+//   sitemap: {
+//     path: '/sitemap.xml',
+//     exclude: [],
+//   },
+//   // Other Next.js configurations...
+// });
 
 module.exports = {
   webpack: (config, { isServer }) => {

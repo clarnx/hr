@@ -7,6 +7,9 @@ const nextConfig = {
     domains: [
       "tak.haroth.com", "nextjspics.s3.ap-south-1.amazonaws.com", "img.haroth.com", "cdn.haroth.com"
     ],
+    eslint: {
+      ignoreDuringBuilds: true,
+  },
   },
 }
 

@@ -9,21 +9,8 @@ const nextConfig = {
     ],
     eslint: {
       ignoreDuringBuilds: true,
+    },
   },
-  },
-}
-
-// const withSitemap = require('next-sitemap');
-
-// module.exports = withSitemap({
-//   sitemap: {
-//     path: '/sitemap.xml',
-//     exclude: [],
-//   },
-//   // Other Next.js configurations...
-// });
-
-module.exports = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.externals = {
@@ -35,5 +22,5 @@ module.exports = {
   },
 };
 
-
-module.exports = nextConfig
+// Export the merged configuration
+module.exports = nextConfig;

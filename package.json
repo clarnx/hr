@@ -16,9 +16,8 @@
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "framer-motion": "^10.12.18",
-    "har-validator": "^5.1.5",
     "js-cookie": "^3.0.5",
-    "next": "^13.5.6",
+    "next": "13.4.10",
     "next-auth": "^4.22.1",
     "nextjs-progressbar": "^0.0.16",
     "node-cron": "^3.0.2",
@@ -26,7 +25,7 @@
     "onesignal": "^0.1.2",
     "otp-gen-agent": "^1.1.2",
     "qs": "^6.11.2",
-    "razorpay": "^0.0.0",
+    "razorpay": "^2.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.1",
@@ -38,8 +37,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-spinners": "^0.13.8",
     "sharp": "^0.32.4",
-    "shortid": "^2.2.16",
-    "uuid": "^9.0.1"
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
